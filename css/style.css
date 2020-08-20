@@ -360,6 +360,9 @@ header .img img {
 	.tours .tours-now > div {
 		overflow-x: scroll;
 	}
+	.tours .tours-now > div::-webkit-scrollbar {
+		display: none;
+	}
 	.tours .tours-now > div > div {
 		width: 1000px;
 	}
