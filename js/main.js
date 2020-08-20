@@ -97,6 +97,7 @@ $(function () {
         cursorwidth: "0",
         cursorborderradius: 0,
         cursorborder: '1px solid #e000dc',
-        scrollspeed: "30"
+        scrollspeed: "30",
+        touchbehavior: true
     });
 });
