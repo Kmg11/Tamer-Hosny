@@ -1,8 +1,7 @@
-/// <reference types="jquery" />
 $(function () {
     // Navbar
-    let navBtn = $(".nav-btn");
-    let navContent = $(".nav-content");
+    let navBtn = $(".nav-btn"),
+        navContent = $(".nav-content");
 
     // Open Nav Bar
     navBtn.on("click", function (e) {
@@ -50,38 +49,35 @@ $(function () {
     });
 
     // Albums Section
-    $(".albums div").click(function () {
+    var albumsSong = $('.albums div'),
+        musicSong = $(".player .music > div");
+
+    albumsSong.on('click', function () {
         $(this).addClass("active").siblings().removeClass("active");
         $(".player .music h2, .our-player h2").text($(this).text());
-    });
 
-    $(".player .music div").click(function () {
-        $(this).addClass("active").siblings().removeClass("active");
-    });
-
-    $(".player .music div > span").click(function () {
-        $(".player .music h2, .our-player h2").text($(this).text());
-    });
-
-    function setActiveSong(target) {
-        $('.player .music div').removeClass('active');
-        target.addClass('active');
-    }
-
-    $('.albums div').on('click', function () {
         var target = $(this).data('name');
         setActiveSong($('.' + target));
     });
 
-    function setActiveAlbum(target) {
-        $('.albums div').removeClass('active');
-        target.addClass('active');
-    }
+    musicSong.on("click", function () {
+        $(this).addClass("active").siblings().removeClass("active");
+        
+        $(".player .music h2, .our-player h2").text($(this).find("> span").text());
 
-    $('.player .music div').on('click', function () {
         var target = $(this).data('name');
         setActiveAlbum($('.' + target));
     });
+    
+    function setActiveSong(target) {
+        musicSong.removeClass('active');
+        target.addClass('active');
+    }
+
+    function setActiveAlbum(target) {
+        albumsSong.removeClass('active');
+        target.addClass('active');
+    }
 
     // Run Nice Scroll
     $("body, html").niceScroll({
